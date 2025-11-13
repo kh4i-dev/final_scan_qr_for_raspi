@@ -219,7 +219,7 @@ logging.info(f"[PATH] LOG_FILE: {LOG_FILE}")
 logging.info(f"[PATH] DATABASE_FILE: {DATABASE_FILE}")
 logging.info(f"[PATH] QUEUE_STATE_FILE: {QUEUE_STATE_FILE}")
 
-CAMERA_INDEX = 1
+CAMERA_INDEX = 0
 ACTIVE_LOW = True
 AUTH_ENABLED = os.environ.get("APP_AUTH_ENABLED", "false").strip().lower() in {"1", "true", "yes", "on"}
 USERNAME = os.environ.get("APP_USERNAME", "admin")
@@ -240,10 +240,10 @@ config_file_lock = threading.Lock()
 #       KHAI BÁO CHÂN GPIO
 # =============================
 DEFAULT_LANES_CONFIG = [
-    {"id": "SP001", "name": "Phân loại A", "sensor_pin": 5, "push_pin": 11, "pull_pin": 12},
-    {"id": "SP002", "name": "Phân loại B", "sensor_pin": 16, "push_pin": 13, "pull_pin": 8},
-    {"id": "SP003", "name": "Phân loại C", "sensor_pin": 18, "push_pin": 15, "pull_pin": 7},
-    {"id": "NG", "name": "Sản Phẩm NG(Bỏ)", "sensor_pin": None, "push_pin": None, "pull_pin": None},
+    {"id": "SP001", "name": "Phân loại A", "sensor_pin": 5,  "pull_pin": 12,"push_pin": 11},
+    {"id": "SP002", "name": "Phân loại B", "sensor_pin": 16,  "pull_pin": 8,"push_pin": 13},
+    {"id": "SP003", "name": "Phân loại C", "sensor_pin": 18,  "pull_pin": 7,"push_pin": 15},
+    {"id": "NG", "name": "Sản Phẩm NG(Bỏ)", "sensor_pin": None, "pull_pin": None, "push_pin": None},
 ]
 lanes_config = DEFAULT_LANES_CONFIG
 RELAY_PINS = []
