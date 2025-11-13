@@ -1,0 +1,545 @@
+2025-11-05 23:43:46 [WARNING] ==================================================
+ĐANG CHẠY Ở CHẾ ĐỘ GIẢ LẬP (MOCK GPIO).
+==================================================
+2025-11-05 23:43:46 [INFO] [DB] Đã khởi tạo CSDL SQLite tại 'C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db' thành công.
+2025-11-05 23:43:46 [WARNING] [CONFIG] Không có file config, dùng mặc định và tạo mới.
+2025-11-05 23:43:46 [WARNING] [AI] Tính năng AI hiện đang TẮT (do config hoặc lỗi).
+2025-11-05 23:43:46 [INFO] [CONFIG] Loaded 4 lanes config.
+2025-11-05 23:43:46 [INFO] [CONFIG] Queue Timeout: 15.0s
+2025-11-05 23:43:46 [INFO] [CONFIG] Sensor Entry Pin (Real/Mock): 6 / 99
+2025-11-05 23:43:46 [INFO] [STARTUP] Không có file trạng thái hàng chờ. Bắt đầu mới.
+2025-11-05 23:43:46 [INFO] [GPIO] Chạy ở chế độ Mock, bỏ qua setup vật lý.
+2025-11-05 23:43:46 [INFO] [GPIO] Reset tất cả relay về trạng thái mặc định (THU BẬT, BĂNG CHUYỀN CHẠY).
+2025-11-05 23:43:46 [INFO] [MOCK] output pin 18=0
+2025-11-05 23:43:46 [INFO] [MOCK] output pin 17=1
+2025-11-05 23:43:46 [INFO] [MOCK] output pin 14=0
+2025-11-05 23:43:46 [INFO] [MOCK] output pin 27=1
+2025-11-05 23:43:46 [INFO] [MOCK] output pin 4=0
+2025-11-05 23:43:46 [INFO] [MOCK] output pin 22=1
+2025-11-05 23:43:46 [INFO] [CONVEYOR] Băng chuyền: RUN
+2025-11-05 23:43:46 [INFO] [GPIO] Reset hoàn tất.
+2025-11-05 23:43:46 [INFO] [MAIN] Đang khởi động ở chế độ: Camera Trigger (v1 Logic).
+2025-11-05 23:43:46 [INFO] [LANE_S] Đã cấu hình hàng NG tại index: 3
+2025-11-05 23:43:46 [INFO] =========================================
+2025-11-05 23:43:46 [INFO]     HỆ THỐNG PHÂN LOẠI SẴN SÀNG (MERGED)
+2025-11-05 23:43:46 [INFO]     Logic: Camera Trigger (v1)
+2025-11-05 23:43:46 [INFO]     GPIO Mode: MOCK (Config: BCM)
+2025-11-05 23:43:46 [INFO]     API State: http://<IP_CUA_PI>:3000
+2025-11-05 23:43:46 [INFO]     Truy cập: http://<IP_CUA_PI>:3000 (KHÔNG yêu cầu đăng nhập)
+2025-11-05 23:43:46 [INFO] =========================================
+2025-11-05 23:43:46 [INFO] [CAM_TRIG] Thread Camera Trigger (v1 Logic) started (Ưu tiên Pyzbar).
+2025-11-05 23:43:46 [INFO] [CAM_TRIG] Đã cấu hình hàng NG tại index: 3 (Sản Phẩm NG(Bỏ))
+2025-11-05 23:43:46 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://192.168.1.12:3000
+2025-11-05 23:43:46 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-05 23:43:47 [INFO] [CAMERA] Đã đặt Auto Exposure: TẮT.
+2025-11-05 23:43:47 [INFO] [CAMERA] Đã đặt Brightness thủ công: 128
+2025-11-05 23:43:47 [INFO] [CAMERA] Đã đặt Contrast thủ công: 32
+2025-11-05 23:43:47 [INFO] [CAMERA] Camera đã khởi động.
+2025-11-05 23:43:51 [INFO] [VPS_UPDATE] Bắt đầu luồng gửi dữ liệu lên https://phanloai.kh4idev.id.vn
+2025-11-05 23:44:12 [INFO] [SHUTDOWN] Đang lưu trạng thái hàng chờ...
+2025-11-05 23:44:12 [INFO] [SHUTDOWN] Hàng chờ trống, không cần lưu.
+2025-11-05 23:44:12 [INFO] Đang tắt ThreadPoolExecutor...
+2025-11-05 23:44:12 [INFO] Đang cleanup GPIO...
+2025-11-05 23:44:12 [INFO] [MOCK] cleanup GPIO
+2025-11-05 23:44:12 [INFO] ✅ GPIO cleaned up.
+2025-11-05 23:44:12 [INFO] 👋 Tạm biệt!
+2025-11-05 23:51:36 [WARNING] ==================================================
+ĐANG CHẠY Ở CHẾ ĐỘ GIẢ LẬP (MOCK GPIO).
+==================================================
+2025-11-05 23:51:36 [INFO] [DB] Đã khởi tạo CSDL SQLite tại 'C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db' thành công.
+2025-11-05 23:51:36 [WARNING] [AI] Tính năng AI hiện đang TẮT (do config hoặc lỗi).
+2025-11-05 23:51:36 [INFO] [CONFIG] Loaded 4 lanes config.
+2025-11-05 23:51:36 [INFO] [CONFIG] Queue Timeout: 15.0s
+2025-11-05 23:51:36 [INFO] [CONFIG] Sensor Entry Pin (Real/Mock): 6 / 99
+2025-11-05 23:51:36 [INFO] [STARTUP] Không có file trạng thái hàng chờ. Bắt đầu mới.
+2025-11-05 23:51:36 [INFO] [GPIO] Chạy ở chế độ Mock, bỏ qua setup vật lý.
+2025-11-05 23:51:36 [INFO] [GPIO] Reset tất cả relay về trạng thái mặc định (THU BẬT, BĂNG CHUYỀN CHẠY).
+2025-11-05 23:51:36 [INFO] [MOCK] output pin 18=0
+2025-11-05 23:51:36 [INFO] [MOCK] output pin 17=1
+2025-11-05 23:51:36 [INFO] [MOCK] output pin 14=0
+2025-11-05 23:51:36 [INFO] [MOCK] output pin 27=1
+2025-11-05 23:51:36 [INFO] [MOCK] output pin 4=0
+2025-11-05 23:51:36 [INFO] [MOCK] output pin 22=1
+2025-11-05 23:51:36 [INFO] [CONVEYOR] Băng chuyền: RUN
+2025-11-05 23:51:37 [INFO] [GPIO] Reset hoàn tất.
+2025-11-05 23:51:37 [INFO] [LANE_S] Đã cấu hình hàng NG tại index: 3
+2025-11-05 23:51:37 [INFO] [MAIN] Đang khởi động ở chế độ: Camera Trigger (v1 Logic).
+2025-11-05 23:51:37 [INFO] =========================================
+2025-11-05 23:51:37 [INFO] [CAM_TRIG] Thread Camera Trigger (v1 Logic) started (Ưu tiên Pyzbar).
+2025-11-05 23:51:37 [INFO]     HỆ THỐNG PHÂN LOẠI SẴN SÀNG (MERGED)
+2025-11-05 23:51:37 [INFO] [CAM_TRIG] Đã cấu hình hàng NG tại index: 3 (Sản Phẩm NG(Bỏ))
+2025-11-05 23:51:37 [INFO]     Logic: Camera Trigger (v1)
+2025-11-05 23:51:37 [INFO]     GPIO Mode: MOCK (Config: BCM)
+2025-11-05 23:51:37 [INFO]     API State: http://<IP_CUA_PI>:3000
+2025-11-05 23:51:37 [INFO]     Truy cập: http://<IP_CUA_PI>:3000 (KHÔNG yêu cầu đăng nhập)
+2025-11-05 23:51:37 [INFO] =========================================
+2025-11-05 23:51:37 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://192.168.1.12:3000
+2025-11-05 23:51:37 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-05 23:51:37 [INFO] [CAMERA] Đã đặt Auto Exposure: TẮT.
+2025-11-05 23:51:37 [INFO] [CAMERA] Đã đặt Brightness thủ công: 128
+2025-11-05 23:51:37 [INFO] [CAMERA] Đã đặt Contrast thủ công: 32
+2025-11-05 23:51:37 [INFO] [CAMERA] Camera đã khởi động.
+2025-11-05 23:51:42 [INFO] [VPS_UPDATE] Bắt đầu luồng gửi dữ liệu lên https://phanloai.kh4idev.id.vn
+2025-11-05 23:52:37 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-05 23:52:46 [ERROR] Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Khai\Documents\GitHub\pi\app.py", line 1633, in decorated
+    return f(*args, **kwargs)
+  File "C:\Users\Khai\Documents\GitHub\pi\app.py", line 1797, in index
+    return render_template('index_v1_fixed.html')
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Khai\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index_v1_fixed.html
+2025-11-05 23:52:46 [INFO] 192.168.1.12 - - [05/Nov/2025 23:52:46] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-11-05 23:52:46 [INFO] 192.168.1.12 - - [05/Nov/2025 23:52:46] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-11-05 23:53:07 [INFO] [SHUTDOWN] Đang lưu trạng thái hàng chờ...
+2025-11-05 23:53:07 [INFO] [SHUTDOWN] Hàng chờ trống, không cần lưu.
+2025-11-05 23:53:07 [INFO] Đang tắt ThreadPoolExecutor...
+2025-11-05 23:53:07 [INFO] Đang cleanup GPIO...
+2025-11-05 23:53:07 [INFO] [MOCK] cleanup GPIO
+2025-11-05 23:53:07 [INFO] ✅ GPIO cleaned up.
+2025-11-05 23:53:07 [INFO] 👋 Tạm biệt!
+2025-11-06 00:00:46 [WARNING] ==================================================
+ĐANG CHẠY Ở CHẾ ĐỘ GIẢ LẬP (MOCK GPIO).
+==================================================
+2025-11-06 00:00:46 [INFO] [DB] Đã khởi tạo CSDL SQLite tại 'C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db' thành công.
+2025-11-06 00:00:46 [WARNING] [AI] Tính năng AI hiện đang TẮT (do config hoặc lỗi).
+2025-11-06 00:00:46 [INFO] [CONFIG] Loaded 4 lanes config.
+2025-11-06 00:00:46 [INFO] [CONFIG] Queue Timeout: 15.0s
+2025-11-06 00:00:46 [INFO] [CONFIG] Sensor Entry Pin (Real/Mock): 6 / 99
+2025-11-06 00:00:46 [INFO] [STARTUP] Không có file trạng thái hàng chờ. Bắt đầu mới.
+2025-11-06 00:00:46 [INFO] [GPIO] Chạy ở chế độ Mock, bỏ qua setup vật lý.
+2025-11-06 00:00:46 [INFO] [GPIO] Reset tất cả relay về trạng thái mặc định (THU BẬT, BĂNG CHUYỀN CHẠY).
+2025-11-06 00:00:46 [INFO] [MOCK] output pin 18=0
+2025-11-06 00:00:46 [INFO] [MOCK] output pin 17=1
+2025-11-06 00:00:46 [INFO] [MOCK] output pin 14=0
+2025-11-06 00:00:46 [INFO] [MOCK] output pin 27=1
+2025-11-06 00:00:46 [INFO] [MOCK] output pin 4=0
+2025-11-06 00:00:46 [INFO] [MOCK] output pin 22=1
+2025-11-06 00:00:46 [INFO] [CONVEYOR] Băng chuyền: RUN
+2025-11-06 00:00:46 [INFO] [GPIO] Reset hoàn tất.
+2025-11-06 00:00:46 [INFO] [LANE_S] Đã cấu hình hàng NG tại index: 3
+2025-11-06 00:00:46 [INFO] [MAIN] Đang khởi động ở chế độ: Camera Trigger (v1 Logic).
+2025-11-06 00:00:46 [INFO] [CAM_TRIG] Thread Camera Trigger (v1 Logic) started (Ưu tiên Pyzbar).
+2025-11-06 00:00:46 [INFO] =========================================
+2025-11-06 00:00:46 [INFO] [CAM_TRIG] Đã cấu hình hàng NG tại index: 3 (Sản Phẩm NG(Bỏ))
+2025-11-06 00:00:46 [INFO]     HỆ THỐNG PHÂN LOẠI SẴN SÀNG (MERGED)
+2025-11-06 00:00:46 [INFO]     Logic: Camera Trigger (v1)
+2025-11-06 00:00:46 [INFO]     GPIO Mode: MOCK (Config: BCM)
+2025-11-06 00:00:46 [INFO]     API State: http://<IP_CUA_PI>:3000
+2025-11-06 00:00:46 [INFO]     Truy cập: http://<IP_CUA_PI>:3000 (KHÔNG yêu cầu đăng nhập)
+2025-11-06 00:00:46 [INFO] =========================================
+2025-11-06 00:00:46 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://192.168.1.12:3000
+2025-11-06 00:00:46 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-06 00:00:47 [INFO] [CAMERA] Đã đặt Auto Exposure: TẮT.
+2025-11-06 00:00:47 [INFO] [CAMERA] Đã đặt Brightness thủ công: 128
+2025-11-06 00:00:47 [INFO] [CAMERA] Đã đặt Contrast thủ công: 32
+2025-11-06 00:00:47 [INFO] [CAMERA] Camera đã khởi động.
+2025-11-06 00:00:51 [INFO] [VPS_UPDATE] Bắt đầu luồng gửi dữ liệu (Color 20FPS) lên https://phanloai.kh4idev.id.vn
+2025-11-06 00:01:20 [INFO] 192.168.1.12 - - [06/Nov/2025 00:01:20] "GET / HTTP/1.1" 200 -
+2025-11-06 00:01:20 [INFO] [WS] Client guest-1717f4212b0 connected. Total: 1
+2025-11-06 00:01:20 [INFO] 192.168.1.12 - - [06/Nov/2025 00:01:20] "GET /video_feed HTTP/1.1" 200 -
+2025-11-06 00:01:21 [INFO] 192.168.1.12 - - [06/Nov/2025 00:01:21] "GET /config HTTP/1.1" 200 -
+2025-11-06 00:01:32 [WARNING] [WS] Kết nối WebSocket bị đóng hoặc lỗi: Connection closed: 1001 
+2025-11-06 00:01:32 [INFO] [WS] Client guest-1717f4212b0 disconnected. Total: 0
+2025-11-06 00:01:32 [INFO] 192.168.1.12 - - [06/Nov/2025 00:01:32] "GET /ws HTTP/1.1" 200 -
+2025-11-06 00:01:35 [INFO] [SHUTDOWN] Đang lưu trạng thái hàng chờ...
+2025-11-06 00:01:35 [INFO] [SHUTDOWN] Hàng chờ trống, không cần lưu.
+2025-11-06 00:01:35 [INFO] Đang tắt ThreadPoolExecutor...
+2025-11-06 00:01:35 [INFO] Đang cleanup GPIO...
+2025-11-06 00:01:35 [INFO] [MOCK] cleanup GPIO
+2025-11-06 00:01:35 [INFO] ✅ GPIO cleaned up.
+2025-11-06 00:01:35 [INFO] 👋 Tạm biệt!
+2025-11-12 15:35:22 [INFO] [SYSTEM] Log system initialized ✅
+2025-11-12 15:35:22 [INFO] [PATH] CONFIG_FILE: C:\Users\Khai\Documents\GitHub\pi\config\config.json
+2025-11-12 15:35:22 [INFO] [PATH] LOG_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\system.log
+2025-11-12 15:35:22 [INFO] [PATH] DATABASE_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db
+2025-11-12 15:35:22 [INFO] [PATH] QUEUE_STATE_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\queue_state.json
+2025-11-12 15:35:22 [WARNING] ==================================================
+ĐANG CHẠY Ở CHẾ ĐỘ GIẢ LẬP (MOCK GPIO).
+==================================================
+2025-11-12 15:35:22 [INFO] [DB] Đã khởi tạo CSDL SQLite tại 'C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db' thành công.
+2025-11-12 15:35:22 [WARNING] [AI] Tính năng AI hiện đang TẮT (do config hoặc lỗi).
+2025-11-12 15:35:22 [INFO] [CONFIG] Loaded 4 lanes config.
+2025-11-12 15:35:22 [INFO] [CONFIG] Queue Timeout: 15.0s
+2025-11-12 15:35:22 [INFO] [CONFIG] Sensor Entry Pin (Real/Mock): 6 / 99
+2025-11-12 15:35:22 [INFO] [STARTUP] Không có file trạng thái hàng chờ. Bắt đầu mới.
+2025-11-12 15:35:22 [INFO] [GPIO] Chạy ở chế độ Mock, bỏ qua setup vật lý.
+2025-11-12 15:35:22 [INFO] [GPIO] Reset tất cả relay về trạng thái mặc định (THU BẬT, BĂNG CHUYỀN CHẠY).
+2025-11-12 15:35:22 [INFO] [MOCK] output pin 11=0
+2025-11-12 15:35:22 [INFO] [MOCK] output pin 12=1
+2025-11-12 15:35:22 [INFO] [MOCK] output pin 8=0
+2025-11-12 15:35:22 [INFO] [MOCK] output pin 13=1
+2025-11-12 15:35:22 [INFO] [MOCK] output pin 7=0
+2025-11-12 15:35:22 [INFO] [MOCK] output pin 15=1
+2025-11-12 15:35:22 [INFO] [CONVEYOR] Băng chuyền: RUN
+2025-11-12 15:35:22 [INFO] [GPIO] Reset hoàn tất.
+2025-11-12 15:35:22 [INFO] [LANE_S] Đã cấu hình hàng NG tại index: 3
+2025-11-12 15:35:22 [INFO] [MAIN] Đang khởi động ở chế độ: Camera Trigger (v1 Logic).
+2025-11-12 15:35:22 [INFO] =========================================
+2025-11-12 15:35:22 [INFO] [CAM_TRIG] Thread Camera Trigger (v1 Logic) started (Ưu tiên Pyzbar).
+2025-11-12 15:35:22 [INFO]     HỆ THỐNG PHÂN LOẠI SẴN SÀNG (MERGED & FIXED)
+2025-11-12 15:35:22 [INFO] [CAM_TRIG] Đã cấu hình hàng NG tại index: 3 (Sản Phẩm NG(Bỏ))
+2025-11-12 15:35:22 [INFO]     Logic: Camera Trigger (v1) - ĐÃ SỬA LỖI LẶP MÃ
+2025-11-12 15:35:22 [INFO]     GPIO Mode: MOCK (Config: BOARD)
+2025-11-12 15:35:22 [INFO]     API State: http://<IP_CUA_PI>:3000
+2025-11-12 15:35:22 [INFO]     Truy cập: http://<IP_CUA_PI>:3000 (KHÔNG yêu cầu đăng nhập)
+2025-11-12 15:35:22 [INFO] =========================================
+2025-11-12 15:35:22 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://10.188.19.175:3000
+2025-11-12 15:35:22 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-12 15:35:22 [INFO] [WS] Client guest-1c8083c0980 connected. Total: 1
+2025-11-12 15:35:22 [INFO] 10.188.19.175 - - [12/Nov/2025 15:35:22] "GET /config HTTP/1.1" 200 -
+2025-11-12 15:35:27 [INFO] [VPS_UPDATE] Bắt đầu luồng gửi dữ liệu (Color 20FPS) lên https://phanloai.kh4idev.id.vn
+2025-11-12 15:35:27 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:28 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:29 [INFO] 10.188.19.175 - - [12/Nov/2025 15:35:29] "GET / HTTP/1.1" 200 -
+2025-11-12 15:35:29 [WARNING] [WS] Kết nối WebSocket bị đóng hoặc lỗi: Connection closed: 1001 
+2025-11-12 15:35:29 [INFO] [WS] Client guest-1c8083c0980 disconnected. Total: 0
+2025-11-12 15:35:29 [INFO] 10.188.19.175 - - [12/Nov/2025 15:35:29] "GET /ws HTTP/1.1" 200 -
+2025-11-12 15:35:29 [INFO] [WS] Client guest-1c8083c8410 connected. Total: 1
+2025-11-12 15:35:29 [INFO] 10.188.19.175 - - [12/Nov/2025 15:35:29] "GET /config HTTP/1.1" 200 -
+2025-11-12 15:35:29 [INFO] 10.188.19.175 - - [12/Nov/2025 15:35:29] "GET /video_feed HTTP/1.1" 200 -
+2025-11-12 15:35:29 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:30 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:31 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:32 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:33 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:34 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:35 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:36 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:37 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:38 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:39 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:40 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:41 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:42 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:43 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:44 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:45 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:46 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:47 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:48 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:49 [WARNING] [VPS_UPDATE] Chưa có state hoặc frame, chờ 1s...
+2025-11-12 15:35:50 [INFO] [SHUTDOWN] Đang lưu trạng thái hàng chờ...
+2025-11-12 15:35:50 [INFO] [SHUTDOWN] Hàng chờ trống, không cần lưu.
+2025-11-12 15:35:50 [INFO] Đang tắt ThreadPoolExecutor...
+2025-11-12 15:35:50 [INFO] Đang cleanup GPIO...
+2025-11-12 15:35:50 [INFO] [MOCK] cleanup GPIO
+2025-11-12 15:35:50 [INFO] ✅ GPIO cleaned up.
+2025-11-12 15:35:50 [INFO] 👋 Tạm biệt!
+2025-11-12 15:38:22 [INFO] [SYSTEM] Log system initialized ✅
+2025-11-12 15:38:22 [INFO] [PATH] CONFIG_FILE: C:\Users\Khai\Documents\GitHub\pi\config\config.json
+2025-11-12 15:38:22 [INFO] [PATH] LOG_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\system.log
+2025-11-12 15:38:22 [INFO] [PATH] DATABASE_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db
+2025-11-12 15:38:22 [INFO] [PATH] QUEUE_STATE_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\queue_state.json
+2025-11-12 15:38:22 [WARNING] ==================================================
+ĐANG CHẠY Ở CHẾ ĐỘ GIẢ LẬP (MOCK GPIO).
+==================================================
+2025-11-12 15:38:22 [INFO] [DB] Đã khởi tạo CSDL SQLite tại 'C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db' thành công.
+2025-11-12 15:38:22 [WARNING] [AI] Tính năng AI hiện đang TẮT (do config hoặc lỗi).
+2025-11-12 15:38:22 [INFO] [CONFIG] Loaded 4 lanes config.
+2025-11-12 15:38:22 [INFO] [CONFIG] Queue Timeout: 15.0s
+2025-11-12 15:38:22 [INFO] [CONFIG] Sensor Entry Pin (Real/Mock): 6 / 99
+2025-11-12 15:38:22 [INFO] [STARTUP] Không có file trạng thái hàng chờ. Bắt đầu mới.
+2025-11-12 15:38:22 [INFO] [GPIO] Chạy ở chế độ Mock, bỏ qua setup vật lý.
+2025-11-12 15:38:22 [INFO] [GPIO] Reset tất cả relay về trạng thái mặc định (THU BẬT, BĂNG CHUYỀN CHẠY).
+2025-11-12 15:38:22 [INFO] [MOCK] output pin 11=0
+2025-11-12 15:38:22 [INFO] [MOCK] output pin 12=1
+2025-11-12 15:38:22 [INFO] [MOCK] output pin 8=0
+2025-11-12 15:38:22 [INFO] [MOCK] output pin 13=1
+2025-11-12 15:38:22 [INFO] [MOCK] output pin 7=0
+2025-11-12 15:38:22 [INFO] [MOCK] output pin 15=1
+2025-11-12 15:38:22 [INFO] [CONVEYOR] Băng chuyền: RUN
+2025-11-12 15:38:22 [INFO] [GPIO] Reset hoàn tất.
+2025-11-12 15:38:22 [INFO] [LANE_S] Đã cấu hình hàng NG tại index: 3
+2025-11-12 15:38:22 [INFO] [MAIN] Đang khởi động ở chế độ: Camera Trigger (v1 Logic).
+2025-11-12 15:38:22 [INFO] =========================================
+2025-11-12 15:38:22 [INFO] [CAM_TRIG] Thread Camera Trigger (v1 Logic) started (Ưu tiên Pyzbar).
+2025-11-12 15:38:22 [INFO]     HỆ THỐNG PHÂN LOẠI SẴN SÀNG (MERGED & FIXED)
+2025-11-12 15:38:22 [INFO] [CAM_TRIG] Đã cấu hình hàng NG tại index: 3 (Sản Phẩm NG(Bỏ))
+2025-11-12 15:38:22 [INFO]     Logic: Camera Trigger (v1) - ĐÃ SỬA LỖI LẶP MÃ
+2025-11-12 15:38:22 [INFO]     GPIO Mode: MOCK (Config: BOARD)
+2025-11-12 15:38:22 [INFO]     API State: http://<IP_CUA_PI>:3000
+2025-11-12 15:38:22 [INFO]     Truy cập: http://<IP_CUA_PI>:3000 (KHÔNG yêu cầu đăng nhập)
+2025-11-12 15:38:22 [INFO] =========================================
+2025-11-12 15:38:22 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://10.188.19.175:3000
+2025-11-12 15:38:22 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-12 15:38:22 [INFO] [WS] Client guest-1be80b60980 connected. Total: 1
+2025-11-12 15:38:22 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:22] "GET /config HTTP/1.1" 200 -
+2025-11-12 15:38:23 [INFO] [CAMERA] Đã đặt Auto Exposure: TẮT.
+2025-11-12 15:38:23 [INFO] [CAMERA] Đã đặt Brightness thủ công: 128
+2025-11-12 15:38:23 [INFO] [CAMERA] Đã đặt Contrast thủ công: 32
+2025-11-12 15:38:23 [INFO] [CAMERA] Camera đã khởi động.
+2025-11-12 15:38:27 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:27] "GET / HTTP/1.1" 200 -
+2025-11-12 15:38:27 [WARNING] [WS] Kết nối WebSocket bị đóng hoặc lỗi: Connection closed: 1001 
+2025-11-12 15:38:27 [INFO] [WS] Client guest-1be80b60980 disconnected. Total: 0
+2025-11-12 15:38:27 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:27] "GET /ws HTTP/1.1" 200 -
+2025-11-12 15:38:27 [INFO] [WS] Client guest-1be80b64410 connected. Total: 1
+2025-11-12 15:38:27 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:27] "GET /video_feed HTTP/1.1" 200 -
+2025-11-12 15:38:27 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:27] "GET /config HTTP/1.1" 200 -
+2025-11-12 15:38:37 [INFO] [SHUTDOWN] Đang lưu trạng thái hàng chờ...
+2025-11-12 15:38:37 [INFO] [SHUTDOWN] Hàng chờ trống, không cần lưu.
+2025-11-12 15:38:37 [INFO] Đang tắt ThreadPoolExecutor...
+2025-11-12 15:38:37 [INFO] Đang cleanup GPIO...
+2025-11-12 15:38:37 [INFO] [MOCK] cleanup GPIO
+2025-11-12 15:38:37 [INFO] ✅ GPIO cleaned up.
+2025-11-12 15:38:37 [INFO] 👋 Tạm biệt!
+2025-11-12 15:38:45 [INFO] [SYSTEM] Log system initialized ✅
+2025-11-12 15:38:45 [INFO] [PATH] CONFIG_FILE: C:\Users\Khai\Documents\GitHub\pi\config\config.json
+2025-11-12 15:38:45 [INFO] [PATH] LOG_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\system.log
+2025-11-12 15:38:45 [INFO] [PATH] DATABASE_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db
+2025-11-12 15:38:45 [INFO] [PATH] QUEUE_STATE_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\queue_state.json
+2025-11-12 15:38:45 [WARNING] ==================================================
+ĐANG CHẠY Ở CHẾ ĐỘ GIẢ LẬP (MOCK GPIO).
+==================================================
+2025-11-12 15:38:45 [INFO] [DB] Đã khởi tạo CSDL SQLite tại 'C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db' thành công.
+2025-11-12 15:38:45 [WARNING] [AI] Tính năng AI hiện đang TẮT (do config hoặc lỗi).
+2025-11-12 15:38:45 [INFO] [CONFIG] Loaded 4 lanes config.
+2025-11-12 15:38:45 [INFO] [CONFIG] Queue Timeout: 15.0s
+2025-11-12 15:38:45 [INFO] [CONFIG] Sensor Entry Pin (Real/Mock): 6 / 99
+2025-11-12 15:38:45 [INFO] [STARTUP] Không có file trạng thái hàng chờ. Bắt đầu mới.
+2025-11-12 15:38:45 [INFO] [GPIO] Chạy ở chế độ Mock, bỏ qua setup vật lý.
+2025-11-12 15:38:45 [INFO] [GPIO] Reset tất cả relay về trạng thái mặc định (THU BẬT, BĂNG CHUYỀN CHẠY).
+2025-11-12 15:38:45 [INFO] [MOCK] output pin 11=0
+2025-11-12 15:38:45 [INFO] [MOCK] output pin 12=1
+2025-11-12 15:38:45 [INFO] [MOCK] output pin 8=0
+2025-11-12 15:38:45 [INFO] [MOCK] output pin 13=1
+2025-11-12 15:38:45 [INFO] [MOCK] output pin 7=0
+2025-11-12 15:38:45 [INFO] [MOCK] output pin 15=1
+2025-11-12 15:38:45 [INFO] [CONVEYOR] Băng chuyền: RUN
+2025-11-12 15:38:45 [INFO] [GPIO] Reset hoàn tất.
+2025-11-12 15:38:45 [INFO] [LANE_S] Đã cấu hình hàng NG tại index: 3
+2025-11-12 15:38:45 [INFO] [MAIN] Đang khởi động ở chế độ: Camera Trigger (v1 Logic).
+2025-11-12 15:38:45 [INFO] [CAM_TRIG] Thread Camera Trigger (v1 Logic) started (Ưu tiên Pyzbar).
+2025-11-12 15:38:45 [INFO] =========================================
+2025-11-12 15:38:45 [INFO] [CAM_TRIG] Đã cấu hình hàng NG tại index: 3 (Sản Phẩm NG(Bỏ))
+2025-11-12 15:38:45 [INFO]     HỆ THỐNG PHÂN LOẠI SẴN SÀNG (MERGED & FIXED)
+2025-11-12 15:38:45 [INFO]     Logic: Camera Trigger (v1) - ĐÃ SỬA LỖI LẶP MÃ
+2025-11-12 15:38:45 [INFO]     GPIO Mode: MOCK (Config: BOARD)
+2025-11-12 15:38:45 [INFO]     API State: http://<IP_CUA_PI>:3000
+2025-11-12 15:38:45 [INFO]     Truy cập: http://<IP_CUA_PI>:3000 (KHÔNG yêu cầu đăng nhập)
+2025-11-12 15:38:45 [INFO] =========================================
+2025-11-12 15:38:45 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://10.188.19.175:3000
+2025-11-12 15:38:45 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-12 15:38:45 [INFO] [CAMERA] Đã đặt Auto Exposure: TẮT.
+2025-11-12 15:38:45 [INFO] [CAMERA] Đã đặt Brightness thủ công: 128
+2025-11-12 15:38:45 [INFO] [CAMERA] Đã đặt Contrast thủ công: 32
+2025-11-12 15:38:45 [ERROR] [ERROR] Không mở được camera.
+2025-11-12 15:38:45 [CRITICAL] ==================================================
+[MAINTENANCE MODE] Lỗi nghiêm trọng: Không thể mở camera.
+==================================================
+2025-11-12 15:38:45 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:45] "GET / HTTP/1.1" 200 -
+2025-11-12 15:38:46 [INFO] [WS] Client guest-1841933aba0 connected. Total: 1
+2025-11-12 15:38:46 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:46] "GET /config HTTP/1.1" 200 -
+2025-11-12 15:38:46 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:46] "GET /video_feed HTTP/1.1" 200 -
+2025-11-12 15:38:46 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:46] "GET / HTTP/1.1" 200 -
+2025-11-12 15:38:46 [WARNING] [WS] Kết nối WebSocket bị đóng hoặc lỗi: Connection closed: 1001 
+2025-11-12 15:38:46 [INFO] [WS] Client guest-1841933aba0 disconnected. Total: 0
+2025-11-12 15:38:46 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:46] "GET /ws HTTP/1.1" 200 -
+2025-11-12 15:38:47 [INFO] [WS] Client guest-184193b0910 connected. Total: 1
+2025-11-12 15:38:47 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:47] "GET /config HTTP/1.1" 200 -
+2025-11-12 15:38:47 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:47] "GET /video_feed HTTP/1.1" 200 -
+2025-11-12 15:38:48 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:48] "GET / HTTP/1.1" 200 -
+2025-11-12 15:38:48 [WARNING] [WS] Kết nối WebSocket bị đóng hoặc lỗi: Connection closed: 1001 
+2025-11-12 15:38:48 [INFO] [WS] Client guest-184193b0910 disconnected. Total: 0
+2025-11-12 15:38:48 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:48] "GET /ws HTTP/1.1" 200 -
+2025-11-12 15:38:48 [INFO] [WS] Client guest-184193b0410 connected. Total: 1
+2025-11-12 15:38:48 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:48] "GET /config HTTP/1.1" 200 -
+2025-11-12 15:38:48 [INFO] 10.188.19.175 - - [12/Nov/2025 15:38:48] "GET /video_feed HTTP/1.1" 200 -
+2025-11-12 15:38:51 [INFO] [SHUTDOWN] Đang lưu trạng thái hàng chờ...
+2025-11-12 15:38:51 [INFO] [SHUTDOWN] Hàng chờ trống, không cần lưu.
+2025-11-12 15:38:51 [INFO] Đang tắt ThreadPoolExecutor...
+2025-11-12 15:38:51 [INFO] Đang cleanup GPIO...
+2025-11-12 15:38:51 [INFO] [MOCK] cleanup GPIO
+2025-11-12 15:38:51 [INFO] ✅ GPIO cleaned up.
+2025-11-12 15:38:51 [INFO] 👋 Tạm biệt!
+2025-11-12 15:42:27 [INFO] [SYSTEM] Log system initialized ✅
+2025-11-12 15:42:27 [INFO] [PATH] CONFIG_FILE: C:\Users\Khai\Documents\GitHub\pi\config\config.json
+2025-11-12 15:42:27 [INFO] [PATH] LOG_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\system.log
+2025-11-12 15:42:27 [INFO] [PATH] DATABASE_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db
+2025-11-12 15:42:27 [INFO] [PATH] QUEUE_STATE_FILE: C:\Users\Khai\Documents\GitHub\pi\logs\queue_state.json
+2025-11-12 15:42:27 [WARNING] ==================================================
+ĐANG CHẠY Ở CHẾ ĐỘ GIẢ LẬP (MOCK GPIO).
+==================================================
+2025-11-12 15:42:27 [INFO] [DB] Đã khởi tạo CSDL SQLite tại 'C:\Users\Khai\Documents\GitHub\pi\logs\sort_log.db' thành công.
+2025-11-12 15:42:27 [WARNING] [AI] Tính năng AI hiện đang TẮT (do config hoặc lỗi).
+2025-11-12 15:42:27 [INFO] [CONFIG] Loaded 4 lanes config.
+2025-11-12 15:42:27 [INFO] [CONFIG] Queue Timeout: 15.0s
+2025-11-12 15:42:27 [INFO] [CONFIG] Sensor Entry Pin (Real/Mock): 6 / 99
+2025-11-12 15:42:27 [INFO] [STARTUP] Không có file trạng thái hàng chờ. Bắt đầu mới.
+2025-11-12 15:42:27 [INFO] [GPIO] Chạy ở chế độ Mock, bỏ qua setup vật lý.
+2025-11-12 15:42:27 [INFO] [GPIO] Reset tất cả relay về trạng thái mặc định (THU BẬT, BĂNG CHUYỀN CHẠY).
+2025-11-12 15:42:27 [INFO] [MOCK] output pin 11=0
+2025-11-12 15:42:27 [INFO] [MOCK] output pin 12=1
+2025-11-12 15:42:27 [INFO] [MOCK] output pin 8=0
+2025-11-12 15:42:27 [INFO] [MOCK] output pin 13=1
+2025-11-12 15:42:27 [INFO] [MOCK] output pin 7=0
+2025-11-12 15:42:27 [INFO] [MOCK] output pin 15=1
+2025-11-12 15:42:27 [INFO] [CONVEYOR] Băng chuyền: RUN
+2025-11-12 15:42:27 [INFO] [GPIO] Reset hoàn tất.
+2025-11-12 15:42:27 [INFO] [LANE_S] Đã cấu hình hàng NG tại index: 3
+2025-11-12 15:42:27 [INFO] [MAIN] Đang khởi động ở chế độ: Camera Trigger (v1 Logic).
+2025-11-12 15:42:27 [INFO] [CAM_TRIG] Thread Camera Trigger (v1 Logic) started (Ưu tiên Pyzbar).
+2025-11-12 15:42:27 [INFO] =========================================
+2025-11-12 15:42:27 [INFO] [CAM_TRIG] Đã cấu hình hàng NG tại index: 3 (Sản Phẩm NG(Bỏ))
+2025-11-12 15:42:27 [INFO]     HỆ THỐNG PHÂN LOẠI SẴN SÀNG (MERGED & FIXED)
+2025-11-12 15:42:27 [INFO]     Logic: Camera Trigger (v1) - ĐÃ SỬA LỖI LẶP MÃ
+2025-11-12 15:42:27 [INFO]     GPIO Mode: MOCK (Config: BOARD)
+2025-11-12 15:42:27 [INFO]     API State: http://<IP_CUA_PI>:3000
+2025-11-12 15:42:27 [INFO]     Truy cập: http://<IP_CUA_PI>:3000 (KHÔNG yêu cầu đăng nhập)
+2025-11-12 15:42:27 [INFO] =========================================
+2025-11-12 15:42:27 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://10.188.19.175:3000
+2025-11-12 15:42:27 [INFO] [33mPress CTRL+C to quit[0m
+2025-11-12 15:42:28 [INFO] [CAMERA] Đã đặt Auto Exposure: TẮT.
+2025-11-12 15:42:28 [INFO] [CAMERA] Đã đặt Brightness thủ công: 128
+2025-11-12 15:42:28 [INFO] [CAMERA] Đã đặt Contrast thủ công: 32
+2025-11-12 15:42:28 [INFO] [CAMERA] Camera đã khởi động.
+2025-11-12 15:42:31 [INFO] 10.188.19.175 - - [12/Nov/2025 15:42:31] "GET / HTTP/1.1" 200 -
+2025-11-12 15:42:31 [INFO] [WS] Client guest-26782ad01a0 connected. Total: 1
+2025-11-12 15:42:31 [INFO] 10.188.19.175 - - [12/Nov/2025 15:42:31] "GET /video_feed HTTP/1.1" 200 -
+2025-11-12 15:42:31 [INFO] 10.188.19.175 - - [12/Nov/2025 15:42:31] "GET /config HTTP/1.1" 200 -
+2025-11-12 15:43:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:44:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:45:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:46:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:46:29 [INFO] [CAM_TRIG] Phát hiện mã MỚI: SP001
+2025-11-12 15:46:29 [INFO] [CAM_TRIG] [JobID 741f844c] (CAM_ENTRY) Quét bằng Pyzbar. Ghép cặp: QR_MATCHED -> Lane 'Phân loại A'. Queue chính: 1
+2025-11-12 15:47:17 [INFO] [CAM_TRIG] Reset QR debounce (không thấy mã > 3.0s). Sẵn sàng quét mã tiếp theo.
+2025-11-12 15:47:18 [INFO] [CAM_TRIG] Phát hiện mã MỚI: SP001
+2025-11-12 15:47:18 [INFO] [CAM_TRIG] [JobID 006ae7fc] (CAM_ENTRY) Quét bằng Pyzbar. Ghép cặp: QR_MATCHED -> Lane 'Phân loại A'. Queue chính: 2
+2025-11-12 15:47:21 [INFO] [CAM_TRIG] Reset QR debounce (không thấy mã > 3.0s). Sẵn sàng quét mã tiếp theo.
+2025-11-12 15:47:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:48:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:49:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:50:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:51:18 [INFO] [CAM_TRIG] Phát hiện mã MỚI: SP002
+2025-11-12 15:51:18 [INFO] [CAM_TRIG] [JobID f8997ff1] (CAM_ENTRY) Quét bằng Pyzbar. Ghép cặp: QR_MATCHED -> Lane 'Phân loại B'. Queue chính: 3
+2025-11-12 15:51:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:52:04 [INFO] [CAM_TRIG] Reset QR debounce (không thấy mã > 3.0s). Sẵn sàng quét mã tiếp theo.
+2025-11-12 15:52:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:53:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:54:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:55:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:56:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:57:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:58:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 15:59:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:00:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:01:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:01:53 [WARNING] [WS] Kết nối WebSocket bị đóng hoặc lỗi: Connection closed: 1005 
+2025-11-12 16:01:53 [INFO] [WS] Client guest-26782ad01a0 disconnected. Total: 0
+2025-11-12 16:01:53 [INFO] 10.188.19.175 - - [12/Nov/2025 16:01:53] "GET /ws HTTP/1.1" 200 -
+2025-11-12 16:02:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:03:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:04:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:05:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:06:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:07:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:08:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:09:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:10:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:11:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:12:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:13:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:14:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:15:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:16:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:17:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:18:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:19:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:20:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:21:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:22:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:23:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:24:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:25:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:26:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:27:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:28:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:29:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:30:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:31:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:32:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:33:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:34:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:35:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:36:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:37:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:38:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:39:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:40:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:41:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:42:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:43:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:44:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:45:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:46:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:47:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:48:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:49:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:50:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:51:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:52:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:53:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:54:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:55:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:56:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:57:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:58:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 16:59:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 17:00:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 17:01:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 17:02:27 [INFO] [CONFIG] Đã tự động lưu config (timing, ai, lanes, camera).
+2025-11-12 17:02:51 [INFO] [SHUTDOWN] Đang lưu trạng thái hàng chờ...
+2025-11-12 17:02:51 [INFO] [SHUTDOWN] Đã lưu 0 QR, 3 Job vào C:\Users\Khai\Documents\GitHub\pi\logs\queue_state.json
+2025-11-12 17:02:51 [INFO] Đang tắt ThreadPoolExecutor...
+2025-11-12 17:02:51 [INFO] Đang cleanup GPIO...
+2025-11-12 17:02:51 [INFO] [MOCK] cleanup GPIO
+2025-11-12 17:02:51 [INFO] ✅ GPIO cleaned up.
+2025-11-12 17:02:51 [INFO] 👋 Tạm biệt!

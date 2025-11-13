@@ -1,0 +1,49 @@
+{
+    "timing_config": {
+        "cycle_delay": 0.3,
+        "settle_delay": 0.2,
+        "sensor_debounce": 0.1,
+        "push_delay": 0.0,
+        "gpio_mode": "BOARD",
+        "queue_head_timeout": 15.0,
+        "pending_trigger_timeout": 1.0
+    },
+    "qr_config": {
+        "camera_index": 0,
+        "use_roi": false,
+        "roi_x": 0,
+        "roi_y": 0,
+        "roi_w": 0,
+        "roi_h": 0
+    },
+    "lanes_config": [
+        {
+            "id": "A",
+            "name": "Loại A",
+            "sensor_pin": 5,
+            "push_pin": 11,
+            "pull_pin": 12
+        },
+        {
+            "id": "B",
+            "name": "Loại B",
+            "sensor_pin": 16,
+            "push_pin": 13,
+            "pull_pin": 8
+        },
+        {
+            "id": "C",
+            "name": "Loại C",
+            "sensor_pin": 18,
+            "push_pin": 15,
+            "pull_pin": 7
+        },
+        {
+            "id": "D",
+            "name": "Làn D (Đi thẳng)",
+            "sensor_pin": null,
+            "push_pin": null,
+            "pull_pin": null
+        }
+    ]
+}

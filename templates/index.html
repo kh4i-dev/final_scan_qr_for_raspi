@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Sorting System</title></head>
+<body>
+  <h1>Real-time Dashboard</h1>
+  <img src="/video_feed" width="640">
+  <div id="state">Loading...</div>
+  <script>
+    const ws = new WebSocket(`ws://${location.host}/ws`);
+    ws.onmessage = e => document.getElementById('state').innerText = e.data;
+  </script>
+</body>
+</html>

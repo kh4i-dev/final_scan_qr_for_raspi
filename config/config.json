@@ -1,0 +1,71 @@
+{
+    "timing_config": {
+        "cycle_delay": 0.3,
+        "settle_delay": 0.2,
+        "sensor_debounce": 0.1,
+        "push_delay": 0.0,
+        "gpio_mode": "BOARD",
+        "queue_head_timeout": 15.0,
+        "pending_trigger_timeout": 0.5,
+        "RELAY_CONVEYOR_PIN": null,
+        "stop_conveyor_on_entry": false,
+        "stability_delay": 0.25,
+        "stop_conveyor_on_qr": false,
+        "conveyor_stop_delay_qr": 2.0,
+        "qr_debounce_time": 3.0,
+        "use_sensor_entry_gantry": false
+    },
+    "ai_config": {
+        "enable_ai": false,
+        "ai_priority": false,
+        "model_path": "yolov8n.pt",
+        "min_confidence": 0.6,
+        "ai_class_to_id_map": {
+            "APPLE": "SP001",
+            "ORANGE": "SP002",
+            "BANANA": "SP003"
+        },
+        "yolo_iou": 0.45,
+        "yolo_augment": false,
+        "yolo_half": false,
+        "enable_deepsort": true,
+        "deepsort_max_age": 30,
+        "deepsort_n_init": 3,
+        "deepsort_max_iou_distance": 0.7
+    },
+    "camera_settings": {
+        "auto_exposure": false,
+        "brightness": 128,
+        "contrast": 32
+    },
+    "lanes_config": [
+        {
+            "id": "SP001",
+            "name": "Ph\u00e2n lo\u1ea1i A",
+            "sensor_pin": 5,
+            "push_pin": 12,
+            "pull_pin": 11
+        },
+        {
+            "id": "SP002",
+            "name": "Ph\u00e2n lo\u1ea1i B",
+            "sensor_pin": 16,
+            "push_pin": 13,
+            "pull_pin": 8
+        },
+        {
+            "id": "SP003",
+            "name": "Ph\u00e2n lo\u1ea1i C",
+            "sensor_pin": 18,
+            "push_pin": 15,
+            "pull_pin": 7
+        },
+        {
+            "id": "NG",
+            "name": "S\u1ea3n Ph\u1ea9m NG(B\u1ecf)",
+            "sensor_pin": null,
+            "push_pin": null,
+            "pull_pin": null
+        }
+    ]
+}

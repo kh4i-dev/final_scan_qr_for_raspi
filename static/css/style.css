@@ -1,0 +1,171 @@
+body {
+  font-family: Inter, sans-serif;
+}
+
+.sensor-light {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.sensor-active {
+  background-color: #f59e0b;
+}
+
+.sensor-inactive {
+  background-color: #4b5563;
+}
+
+.relay-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.relay-active {
+  background-color: #22c55e;
+}
+
+.relay-inactive {
+  background-color: #ef4444;
+}
+
+.relay-disabled {
+  background-color: #374151;
+}
+
+.nav-button.active {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+#qr-overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 10;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.status-pulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+#sidebar.expanded {
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.5);
+}
+
+#sidebar-toggle {
+  transition: background 0.2s ease, transform 0.3s ease;
+}
+
+#sidebar-toggle:hover {
+  transform: scale(1.05) translateY(-50%);
+}
+
+#confirm-modal {
+  transition: opacity 0.2s ease-in-out;
+}
+
+#confirm-modal-content {
+  transition: transform 0.2s ease-in-out;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 72px;
+  background-color: #1e293b;
+  color: #fff;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: width 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.sidebar.expanded {
+  width: 230px;
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar .logo {
+  font-size: 18px;
+  font-weight: 600;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.logo-text {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.expanded .logo-text {
+  opacity: 1;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li a {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 15px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.menu li a:hover {
+  background: #334155;
+  color: #fff;
+}
+
+.menu li a i {
+  width: 24px;
+  font-size: 17px;
+  text-align: center;
+}
+
+.menu li a span {
+  opacity: 0;
+  margin-left: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.expanded li a span {
+  opacity: 1;
+}
