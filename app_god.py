@@ -224,7 +224,7 @@ ACTIVE_LOW = True
 AUTH_ENABLED = os.environ.get("APP_AUTH_ENABLED", "false").strip().lower() in {"1", "true", "yes", "on"}
 USERNAME = os.environ.get("APP_USERNAME", "admin")
 PASSWORD = os.environ.get("APP_PASSWORD", "123")
-SENSOR_ENTRY_PIN = 6 # (Từ v2)
+SENSOR_ENTRY_PIN = 33 # (Từ v2)
 SENSOR_ENTRY_MOCK_PIN = 99 # (Từ v2)
 
 # =============================
