@@ -93,7 +93,7 @@ class RealGPIO(GPIOProvider):
 
 class MockGPIO(GPIOProvider):
     def __init__(self):
-        self.BOARD = "mock_BOARD"; self.BCM = "mock_BCM"; self.OUT = "mock_OUT"
+        self.BOARD = "mock_BOARD"; self.BOARD = "mock_BOARD"; self.OUT = "mock_OUT"
         self.IN = "mock_IN"; self.HIGH = 1; self.LOW = 0
         self.input_pins = set(); self.PUD_UP = "mock_PUD_UP"; self.pin_states = {}
         logging.warning("="*50 + "\nĐANG CHẠY Ở CHẾ ĐỘ GIẢ LẬP (MOCK GPIO).\n" + "="*50)
@@ -231,9 +231,9 @@ config_file_lock = threading.Lock()
 #       KHAI BÁO CHÂN GPIO
 # =============================
 DEFAULT_LANES_CONFIG = [
-    {"id": "SP001", "name": "Phân loại A", "sensor_pin": 3, "push_pin": 17, "pull_pin": 18},
-    {"id": "SP002", "name": "Phân loại B", "sensor_pin": 23, "push_pin": 27, "pull_pin": 14},
-    {"id": "SP003", "name": "Phân loại C", "sensor_pin": 24, "push_pin": 22, "pull_pin": 4},
+    {"id": "SP001", "name": "Phân loại A", "sensor_pin": 5, "push_pin": 11, "pull_pin": 12},
+    {"id": "SP002", "name": "Phân loại B", "sensor_pin": 16, "push_pin": 13, "pull_pin": 8},
+    {"id": "SP003", "name": "Phân loại C", "sensor_pin": 18, "push_pin": 15, "pull_pin": 7},
     {"id": "NG", "name": "Sản Phẩm NG(Bỏ)", "sensor_pin": None, "push_pin": None, "pull_pin": None},
 ]
 lanes_config = DEFAULT_LANES_CONFIG
@@ -272,7 +272,7 @@ system_state = {
     "lanes": [],
     "timing_config": {
         "cycle_delay": 0.3, "settle_delay": 0.2, "sensor_debounce": 0.1,
-        "push_delay": 0.0, "gpio_mode": "BCM",
+        "push_delay": 0.0, "gpio_mode": "BOARD",
         "queue_head_timeout": 15.0,
         "pending_trigger_timeout": 0.5, # Không còn dùng
         "RELAY_CONVEYOR_PIN": None,
@@ -284,7 +284,7 @@ system_state = {
         "use_sensor_entry_gantry": False # --- (MERGE) Cờ Bật/Tắt
     },
     "is_mock": isinstance(GPIO, MockGPIO), "maintenance_mode": False,
-    "auth_enabled": AUTH_ENABLED, "gpio_mode": "BCM", "last_error": None,
+    "auth_enabled": AUTH_ENABLED, "gpio_mode": "BOARD", "last_error": None,
     "queue_indices": [],
     "sensor_entry_reading": 1, # (Từ v2)
     "entry_queue_size": 0,
@@ -427,7 +427,7 @@ def load_local_config():
     }
     default_timing_config = {
         "cycle_delay": 0.3, "settle_delay": 0.2, "sensor_debounce": 0.1,
-        "push_delay": 0.0, "gpio_mode": "BCM",
+        "push_delay": 0.0, "gpio_mode": "BOARD",
         "queue_head_timeout": 15.0, "pending_trigger_timeout": 0.5,
         "RELAY_CONVEYOR_PIN": None,
         "stop_conveyor_on_entry": False,
@@ -519,7 +519,7 @@ def load_local_config():
 
     with state_lock:
         system_state['timing_config'] = loaded_config['timing_config']
-        system_state['gpio_mode'] = loaded_config['timing_config'].get("gpio_mode", "BCM")
+        system_state['gpio_mode'] = loaded_config['timing_config'].get("gpio_mode", "BOARD")
         system_state['lanes'] = new_system_lanes
         system_state['auth_enabled'] = AUTH_ENABLED
         system_state['is_mock'] = isinstance(GPIO, MockGPIO)
@@ -1795,7 +1795,7 @@ def broadcast_state():
             system_state["last_error"] = error_manager.last_error
             system_state["is_mock"] = isinstance(GPIO, MockGPIO)
             system_state["auth_enabled"] = AUTH_ENABLED
-            system_state["gpio_mode"] = system_state['timing_config'].get('gpio_mode', 'BCM')
+            system_state["gpio_mode"] = system_state['timing_config'].get('gpio_mode', 'BOARD')
             system_state["entry_queue_size"] = queue_len
             system_state["queue_indices"] = current_queue_indices
             # (MERGE) Phải cập nhật sensor_entry_reading từ biến global (nếu logic v2 chạy)
@@ -1960,11 +1960,11 @@ def update_config():
         config_to_save['camera_settings'] = current_camera_settings.copy()
 
         current_timing = system_state['timing_config']
-        current_gpio_mode = current_timing.get('gpio_mode', 'BCM')
+        current_gpio_mode = current_timing.get('gpio_mode', 'BOARD')
         
         default_timing = { 
             "cycle_delay": 0.3, "settle_delay": 0.2, "sensor_debounce": 0.1,
-            "push_delay": 0.0, "gpio_mode": "BCM",
+            "push_delay": 0.0, "gpio_mode": "BOARD",
             "queue_head_timeout": 15.0, "pending_trigger_timeout": 0.5,
             "RELAY_CONVEYOR_PIN": None, "stop_conveyor_on_entry": False,
             "stability_delay": 0.25,
@@ -2294,11 +2294,11 @@ if __name__ == "__main__":
         loaded_gpio_mode = ""
         use_gantry_logic = False
         with state_lock:
-            loaded_gpio_mode = system_state.get("gpio_mode", "BCM")
+            loaded_gpio_mode = system_state.get("gpio_mode", "BOARD")
             use_gantry_logic = system_state['timing_config'].get('use_sensor_entry_gantry', False)
 
         if isinstance(GPIO, RealGPIO):
-            mode_to_set = GPIO.BCM if loaded_gpio_mode == "BCM" else GPIO.BOARD
+            mode_to_set = GPIO.BOARD if loaded_gpio_mode == "BOARD" else GPIO.BCM
             GPIO.setmode(mode_to_set); GPIO.setwarnings(False)
             logging.info(f"[GPIO] Đã đặt chế độ chân cắm là: {loaded_gpio_mode}")
             
