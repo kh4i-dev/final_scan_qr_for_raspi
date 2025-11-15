@@ -224,8 +224,8 @@ ACTIVE_LOW = True
 AUTH_ENABLED = os.environ.get("APP_AUTH_ENABLED", "false").strip().lower() in {"1", "true", "yes", "on"}
 USERNAME = os.environ.get("APP_USERNAME", "admin")
 PASSWORD = os.environ.get("APP_PASSWORD", "123")
-SENSOR_ENTRY_PIN = 33 # (Từ v2)
-SENSOR_ENTRY_MOCK_PIN = 99 # (Từ v2)
+SENSOR_ENTRY_PIN = 33 # 
+SENSOR_ENTRY_MOCK_PIN = 99 # 
 
 # =============================
 #     KHỞI TẠO CÁC ĐỐI TƯỢNG
@@ -240,9 +240,9 @@ config_file_lock = threading.Lock()
 #       KHAI BÁO CHÂN GPIO
 # =============================
 DEFAULT_LANES_CONFIG = [
-    {"id": "SP001", "name": "Phân loại A", "sensor_pin": 5,  "pull_pin": 12,"push_pin": 11},
-    {"id": "SP002", "name": "Phân loại B", "sensor_pin": 16,  "pull_pin": 8,"push_pin": 13},
-    {"id": "SP003", "name": "Phân loại C", "sensor_pin": 18,  "pull_pin": 7,"push_pin": 15},
+    {"id": "SP001", "name": "Phân loại hàng hạng 1", "sensor_pin": 5,  "pull_pin": 12,"push_pin": 11},
+    {"id": "SP002", "name": "Phân loại hàng hạng 2", "sensor_pin": 16,  "pull_pin": 8,"push_pin": 13},
+    {"id": "SP003", "name": "Phân loại hàng hạng 3", "sensor_pin": 18,  "pull_pin": 7,"push_pin": 15},
     {"id": "NG", "name": "Sản Phẩm NG(Bỏ)", "sensor_pin": None, "pull_pin": None, "push_pin": None},
 ]
 lanes_config = DEFAULT_LANES_CONFIG
