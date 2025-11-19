@@ -49,7 +49,6 @@ relay_push_state = []   # Trạng thái relay Đẩy (1=ON, 0=OFF)
 
 queue_lock = threading.Lock()
 queue_head_since = 0.0
-# (ĐÃ XÓA) pending_sensor_triggers
 
 # =============================
 #    CÁC HÀM TIỆN ÍCH (Chuẩn hóa ID)

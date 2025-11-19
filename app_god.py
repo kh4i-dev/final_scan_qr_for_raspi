@@ -248,7 +248,7 @@ DEFAULT_LANES_CONFIG = [
 lanes_config = DEFAULT_LANES_CONFIG
 RELAY_PINS = []
 SENSOR_PINS = []
-RELAY_CONVEYOR_PIN = 7
+RELAY_CONVEYOR_PIN = None
 
 # =============================
 #     HÀM ĐIỀU KHIỂN RELAY
