@@ -295,7 +295,7 @@ system_state = {
     "is_mock": isinstance(GPIO, MockGPIO), "maintenance_mode": False,
     "auth_enabled": AUTH_ENABLED, "gpio_mode": "BOARD", "last_error": None,
     "queue_indices": [],
-    "sensor_entry_reading": 1, # (Từ v2)
+    "sensor_entry_reading": 1,
     "entry_queue_size": 0,
     "ai_config": {},
     "camera_settings": {}
@@ -1224,7 +1224,7 @@ def camera_trigger_job_creator_thread():
                     data = None; time.sleep(0.1); continue
             
             # ==================================
-            # (CẬP NHẬT) LOGIC DEBOUNCE MỚI TỪ APPV2.PY
+            # (CẬP NHẬT) LOGIC DEBOUNCE 
             # ==================================
             now = time.time()
 
@@ -1497,12 +1497,12 @@ def gantry_trigger_job_creator_thread():
 # =============================
 #       LUỒNG SENSOR LÀN (TIÊU THỤ JOB)
 # =============================
-# --- (MERGE) Lấy từ v2.py, nhưng thêm logic Sửa Bug 2
+# --- (MERGE)  logic Sửa Bug 
 def lane_sensor_monitoring_thread():
     global last_sensor_state, last_sensor_trigger_time
     global queue_head_since
     
-    # --- (BUG 2 FIX) Thêm biến cho logic Auto-Test (lấy từ v1)
+    # --- (BUG 2 FIX) Thêm biến cho logic Auto-Test 
     global auto_test_last_state, auto_test_last_trigger
     
     last_sensor_state_prev = list(last_sensor_state) 
@@ -1535,7 +1535,7 @@ def lane_sensor_monitoring_thread():
                 num_lanes = len(system_state['lanes'])
             now = time.time()
             
-            # --- (BUG 2 FIX) LOGIC AUTO TEST (Lấy từ v1) ---
+            # --- (BUG 2 FIX) LOGIC AUTO TEST ---
             if AUTO_TEST_ENABLED:
                 
                 if len(auto_test_last_state) != num_lanes:
@@ -1687,7 +1687,7 @@ def lane_sensor_monitoring_thread():
                                 else:
                                     is_head_match = False
                                     job_to_run = None
-                                    logging.warning(f"[SENSOR] ⚠️ [JobID {job_id_head}] {lane_name_for_log} kích hoạt nhưng KHÔNG KHỚP Job đầu hàng chờ (Lane {job_head['lane_index']}). Bỏ qua.")
+                                    logging.warning(f"[SENSOR] [JobID {job_id_head}] {lane_name_for_log} kích hoạt nhưng KHÔNG KHỚP Job đầu hàng chờ (Lane {job_head['lane_index']}). Bỏ qua.")
                                     broadcast_log({"log_type": "warn", "message": f"Sensor {lane_name_for_log} kích hoạt (lỗi đồng bộ). Bỏ qua.", "queue": current_queue_indices_for_log})
                                     break
                         
@@ -1924,7 +1924,6 @@ def generate_frames():
 @app.route('/')
 @requires_auth
 def index():
-    # (MERGE) Đổi tên file HTML
     return render_template('indexv2.html')
 
 @app.route('/video_feed')
@@ -2443,11 +2442,11 @@ if __name__ == "__main__":
                 
 
             logging.info("=========================================")
-            logging.info("    HỆ THỐNG PHÂN LOẠI SẴN SÀNG (MERGED & FIXED & YOLOv8 NÂNG CAO)")
+            logging.info("    HỆ THỐNG PHÂN LOẠI SẴN SÀNG   ")
             if use_gantry_logic:
                 logging.info("    Logic: Sensor Gantry (v2)")
             else:
-                logging.info("    Logic: Camera Trigger (v1) - ĐÃ SỬA LỖI LẶP MÃ") # (CẬP NHẬT)
+                logging.info("    Logic: Camera Trigger (v1)") # (CẬP NHẬT)
             logging.info(f"    GPIO Mode: {'REAL' if isinstance(GPIO, RealGPIO) else 'MOCK'} (Config: {loaded_gpio_mode})")
             logging.info(f"    API State: http://<IP_CUA_PI>:3000")
             if AUTH_ENABLED:
@@ -2459,7 +2458,7 @@ if __name__ == "__main__":
             app.run(host='0.0.0.0', port=3000, debug=False)
 
         except KeyboardInterrupt:
-            logging.info("\n🛑 Dừng hệ thống (Ctrl+C)...")
+            logging.info("\n Dừng hệ thống (Ctrl+C)...")
         except Exception as main_e:
             logging.critical(f"[CRITICAL] Lỗi khởi động hệ thống: {main_e}", exc_info=True)
             try:
@@ -2478,4 +2477,4 @@ if __name__ == "__main__":
                 logging.info("✅ GPIO cleaned up.")
             except Exception as clean_e:
                 logging.warning(f"Lỗi khi cleanup GPIO: {clean_e}")
-            logging.info("👋 Tạm biệt!")
+            logging.info("Tạm biệt!")

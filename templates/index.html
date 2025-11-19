@@ -1,13 +1,262 @@
 <!DOCTYPE html>
-<html>
-<head><title>Sorting System</title></head>
-<body>
-  <h1>Real-time Dashboard</h1>
-  <img src="/video_feed" width="640">
-  <div id="state">Loading...</div>
-  <script>
-    const ws = new WebSocket(`ws://${location.host}/ws`);
-    ws.onmessage = e => document.getElementById('state').innerText = e.data;
-  </script>
+<html lang="vi" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ Thống Phân Loại</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body class="bg-gray-900 text-gray-200 flex h-screen overflow-hidden">
+
+    <aside id="sidebar"
+        class="fixed left-0 top-0 h-full bg-gray-800 transition-all duration-300 ease-in-out shadow-lg overflow-hidden w-[6px] flex flex-col items-center z-30">
+
+        <div id="sidebar-content"
+            class="opacity-0 w-0 transition-all duration-300 ease-in-out overflow-hidden h-full flex flex-col bg-gray-800">
+            <div class="p-4 flex items-center justify-between border-b border-gray-700" style="min-width: 14rem;">
+                <span class="text-2xl">🤖</span>
+                <h1 class="text-xl font-bold text-white">Hệ Thống</h1>
+                <div class="space-x-2">
+                    <span id="mock-badge"
+                        class="hidden text-xs font-semibold bg-yellow-500 text-black px-2 py-0.5 rounded-full">MOCK</span>
+                    <span id="maintenance-badge"
+                        class="hidden text-xs font-semibold bg-red-600 text-white px-2 py-0.5 rounded-full">BẢO
+                        TRÌ</span>
+                </div>
+            </div>
+
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="#" onclick="showPage('home')" id="nav-home"
+                    class="nav-button flex items-center p-2 rounded-lg text-gray-300 hover:bg-gray-700 active">
+                    <span class="ml-2">🏠 Trang Chủ</span>
+                </a>
+                <a href="#" onclick="showPage('config')" id="nav-config"
+                    class="nav-button flex items-center p-2 rounded-lg text-gray-300 hover:bg-gray-700">
+                    <span class="ml-2">⚙️ Cấu Hình</span>
+                </a>
+                <a href="#" onclick="showPage('test')" id="nav-test"
+                    class="nav-button flex items-center p-2 rounded-lg text-gray-300 hover:bg-gray-700">
+                    <span class="ml-2">🧪 Kiểm Tra</span>
+                </a>
+                <a href="#" onclick="showPage('stats')" id="nav-stats"
+                    class="nav-button flex items-center p-2 rounded-lg text-gray-300 hover:bg-gray-700">
+                    <span class="ml-2">📊 Thống Kê</span>
+                </a>
+            </nav>
+
+            <div class="p-3 border-t border-gray-700 text-center text-xs text-gray-500">
+                &copy; 2025 Hệ Thống
+            </div>
+        </div>
+    </aside>
+
+    <main id="main-content"
+        class="flex-1 p-4 md:p-6 overflow-auto bg-gray-900 transition-all duration-300 ease-in-out ml-2">
+        <div id="maintenance-banner"
+            class="hidden fixed top-0 left-0 w-full bg-red-700 text-white p-3 text-center z-50 shadow-lg">
+            <div class="flex items-center justify-center">
+                <span class="text-lg font-bold">⚠️ HỆ THỐNG ĐANG BẢO TRÌ: <span id="maintenance-error"
+                        class="font-normal">...</span></span>
+                <button data-allow-maintenance="true" onclick="resetMaintenance()"
+                    class="ml-4 bg-amber-300 text-red-900 font-bold py-1 px-3 rounded-md text-sm hover:bg-amber-200">
+                    Thoát Bảo Trì
+                </button>
+                <button data-allow-maintenance="true" onclick="window.location.reload()"
+                    class="ml-3 bg-white text-red-700 font-bold py-1 px-3 rounded-md text-sm hover:bg-gray-200">
+                    Tải Lại Trang
+                </button>
+            </div>
+        </div>
+
+        <h1 class="text-2xl font-bold text-center mb-4 text-white">Bảng Điều Khiển Hệ Thống Phân Loại</h1>
+
+        <div id="page-home" class="space-y-4">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                <div class="lg:col-span-2 flex flex-col space-y-4">
+                    <div class="bg-gray-800 p-3 rounded-lg shadow-lg">
+                        <h2 class="text-lg font-semibold mb-2 text-white">📦 Hàng Chờ</h2>
+
+                        <div id="sensor-gantry-status-home" class="hidden mb-3 bg-gray-900 rounded-md p-3">
+                            <h3 class="text-sm font-semibold text-gray-400 mb-2">Trạng thái Sensor Gác Cổng (Entry)</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="text-white">Trạng thái (Realtime):</span>
+                                <div class="flex items-center space-x-2">
+                                    <div id="sensor-gantry-light-home" class="sensor-light sensor-inactive w-5 h-5">
+                                    </div>
+                                    <span id="sensor-gantry-text-home" class="text-gray-500 text-sm">Chờ...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row gap-3">
+                            <div class="md:w-full bg-gray-900 rounded-md p-3 min-h-[4rem] space-y-2">
+                                <h3 class="text-sm font-semibold text-gray-400">Hàng Chờ Xử Lý (Processing Queue)</h3>
+                                <div id="qr-queue-container" class="flex flex-wrap gap-2 items-center min-h-[2rem]">
+                                    <span id="qr-queue-empty" class="text-gray-500 text-sm">Hàng chờ đang
+                                        rỗng...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 p-3 rounded-lg shadow-lg">
+                        <h2 class="text-lg font-semibold mb-2 text-white flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            Camera Giám Sát
+                        </h2>
+                        <div class="bg-black rounded-md overflow-hidden aspect-video relative">
+                            <img id="video_feed" src="" class="w-full h-full object-cover" alt="Camera Feed" />
+                            <div id="qr-overlay" style="opacity: 0;"></div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-3 rounded-lg shadow-lg">
+                        <h2 class="text-lg font-semibold mb-2 text-white">🧾 Logs Hệ Thống</h2>
+                        <div id="log-container"
+                            class="h-64 md:h-80 bg-gray-900 rounded-md p-2 overflow-y-auto text-xs font-mono space-y-1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-1 space-y-3">
+                    <div class="bg-gray-800 p-3 rounded-lg shadow-lg">
+                        <h2 class="text-lg font-semibold mb-3 text-white">⚙️ Trạng Thái Lanes</h2>
+
+                        <div class="space-y-3" id="lane-status-container">
+                        </div>
+
+                        <button
+                            onclick="showConfirmModal('Bạn có chắc muốn reset đếm toàn bộ?', () => resetCount('all'))"
+                            class="mt-3 w-full bg-red-600 hover:bg-red-700 text-white py-1.5 px-2 rounded text-sm font-medium">
+                            Reset Toàn Bộ
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="page-config" class="hidden">
+            <div class="max-w-3xl mx-auto bg-gray-800 p-4 md:p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-semibold text-white mb-4">⚙️ Cấu Hình Hệ Thống</h2>
+
+                <div class="bg-gray-900 p-4 rounded-lg mb-4">
+                    <h3 class="text-lg font-semibold text-gray-300 mb-3">Tất cả Config (Nội dung config.json)</h3>
+                    <p class="text-sm text-yellow-500 mb-3">⚠️ Thay đổi bất kỳ cấu hình nào ở đây (đặc biệt là
+                        'lanes_config' hoặc 'gpio_mode') đều yêu cầu **khởi động lại** ứng dụng Python để có hiệu lực!
+                    </p>
+                    <div>
+                        <label for="config-full-json" class="block text-sm font-medium text-gray-400 mb-1">Nội dung JSON
+                            của Toàn bộ Cấu hình:</label>
+                        <textarea id="config-full-json" rows="25"
+                            class="w-full bg-gray-700 text-white rounded-md p-2 border border-gray-600 font-mono text-xs focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Đang tải config..."></textarea>
+                    </div>
+                </div>
+
+                <div class="flex space-x-3">
+                    <button onclick="saveConfig()"
+                        class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md">Lưu
+                        Cấu Hình</button>
+                    <button onclick="loadConfig()"
+                        class="flex-1 bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg shadow-md">Tải
+                        Lại</button>
+                </div>
+            </div>
+        </div>
+        <div id="page-test" class="hidden">
+            <div class="max-w-3xl mx-auto bg-gray-800 p-4 md:p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-semibold text-white mb-4">🧪 Kiểm Tra Cảm Biến & Relay</h2>
+                <div class="bg-gray-900 p-4 rounded-lg mb-4 text-center">
+                    <h3 class="text-lg font-semibold text-gray-300 mb-3">Tự động Test (Sensor → Relay)</h3>
+                    <button id="toggle-auto-test" onclick="toggleAutoTest()"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-md shadow-md w-full md:w-auto">
+                        🔄 Bật Auto Test Sensor
+                    </button>
+                </div>
+
+                <div id="sensor-gantry-status-test" class="hidden bg-gray-900 p-4 rounded-lg mb-4">
+                    <h3 class="text-lg font-semibold text-gray-300 mb-2">Trạng thái Sensor Gác Cổng (Entry)</h3>
+                    <div class="flex items-center justify-center space-x-4">
+                        <p class="text-sm text-gray-400">Trạng thái (Realtime):</p>
+                        <div id="test-sensor-gantry" class="sensor-light sensor-inactive w-8 h-8"></div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="text-lg font-semibold text-gray-300 mb-2">Trạng thái Cảm biến (Realtime)</h3>
+                    <div id="sensor-status" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-300 mb-2">Test Relay Thủ Công</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4" id="manual-relay-test-container">
+                    </div>
+                    <button onclick="testAllRelays()"
+                        class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-5 rounded-md shadow-md w-full">
+                        🔁 Test toàn bộ Relay (Tuần tự)
+                    </button>
+                </div>
+                <div id="mock-controls" class="hidden bg-gray-900 p-4 rounded-lg mt-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold text-gray-300">Giả Lập Cảm Biến (Mock)</h3>
+                        <span class="text-xs uppercase tracking-wide bg-yellow-500 text-black px-2 py-0.5 rounded">Mock
+                            only</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Mô phỏng cảm biến nhận sản phẩm (mức LOW) hoặc trở về trạng thái
+                        bình thường (mức HIGH). Chỉ hoạt động khi chạy chế độ giả lập.</p>
+
+                    <div id="mock-lane-container" class="grid grid-cols-1 md:grid-cols-4 gap-3"></div>
+                </div>
+            </div>
+        </div>
+        <div id="page-stats" class="hidden">
+            <div id="stats-card" class="bg-gray-800 p-3 rounded-lg shadow-lg">
+                <h2 class="text-lg font-semibold mb-2 text-white">📊 Thống Kê Sản Lượng (Theo Ngày)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="md:col-span-2 bg-gray-900 p-2 rounded-md">
+                        <canvas id="sort-chart-bar" class="w-full" height="300"></canvas>
+                    </div>
+                    <div class="md:col-span-1 bg-gray-900 p-2 rounded-md">
+                        <canvas id="sort-chart-doughnut" class="w-full" height="300"></canvas>
+                    </div>
+                </div>
+                <div class="mt-4 bg-gray-900 p-3 rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-300 mb-2">Debug/Monitor Queue</h3>
+                    <div class="flex space-x-3">
+                        <button onclick="resetQueueManual()"
+                            class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm">Reset
+                            Hàng Chờ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="confirm-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 opacity-0"
+        onclick="closeConfirmModal()">
+        <div id="confirm-modal-content" class="bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-sm transform scale-95"
+            onclick="event.stopPropagation()">
+            <h3 class="text-lg font-bold text-white mb-4" id="confirm-modal-title">Xác nhận hành động</h3>
+            <p class="text-gray-300 mb-6" id="confirm-modal-text">Bạn có chắc chắn muốn tiếp tục?</p>
+            <div class="flex justify-end space-x-3">
+                <button id="confirm-modal-cancel"
+                    class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg">Hủy bỏ</button>
+                <button id="confirm-modal-ok"
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
 </body>
+
 </html>

@@ -8,6 +8,13 @@ import re
 import RPi.GPIO as GPIO # Import trực tiếp
 from flask import Flask, Response, send_from_directory, request, jsonify
 from flask_sock import Sock
+try:
+    from pyzbar import pyzbar
+    PYZBAR_ENABLED = True
+except ImportError:
+    PYZBAR_ENABLED = False
+    print("[WARN] Thư viện pyzbar chưa được cài đặt (pip install pyzbar). Sẽ chỉ dùng cv2.QRCodeDetector().")
+
 
 # =============================
 #      CẤU HÌNH & KHỞI TẠO TOÀN CỤC
@@ -42,7 +49,7 @@ relay_push_state = []   # Trạng thái relay Đẩy (1=ON, 0=OFF)
 
 queue_lock = threading.Lock()
 queue_head_since = 0.0
-pending_sensor_triggers = [] # (khởi tạo theo num_lanes)
+# (ĐÃ XÓA) pending_sensor_triggers
 
 # =============================
 #    CÁC HÀM TIỆN ÍCH (Chuẩn hóa ID)
@@ -92,8 +99,8 @@ def ensure_lane_ids(lanes_list):
 
 def load_config():
     global lanes_config, timing_config, qr_config, RELAY_PINS, SENSOR_PINS
-    # (MỚI) Thêm các biến relay vào global
-    global counts, last_s_state, last_s_trig, pending_sensor_triggers, relay_grab_state, relay_push_state
+    # Thêm các biến relay vào global
+    global counts, last_s_state, last_s_trig, relay_grab_state, relay_push_state
 
     if not os.path.exists(CONFIG_FILE):
         print(f"[CRITICAL] Không tìm thấy file {CONFIG_FILE}. Không thể khởi động.")
@@ -124,7 +131,7 @@ def load_config():
         counts = [0] * num_lanes
         last_s_state = [1] * num_lanes
         last_s_trig = [0.0] * num_lanes
-        pending_sensor_triggers = [0.0] * num_lanes
+        # (ĐÃ XÓA) pending_sensor_triggers
         
         # Giả định mặc định là Thu BẬT (1), Đẩy TẮT (0)
         relay_grab_state = [1] * num_lanes 
@@ -167,7 +174,7 @@ def reset_relays():
         main_running = False
 
 # =============================
-# 🪶 HÀM HỖ TRỢ (Log & Broadcast)
+# HÀM HỖ TRỢ (Log & Broadcast)
 # =============================
 def log(msg, log_type="info"):
     """In ra console và gửi log tới client."""
@@ -221,7 +228,6 @@ def run_camera(camera_index):
 #       LOGIC CHU TRÌNH PHÂN LOẠI
 # =============================
 def sorting_process(lane_index):
-    # (MỚI) Thêm các biến relay vào global
     global counts, relay_grab_state, relay_push_state
     try:
         lane = lanes_config[lane_index]
@@ -242,22 +248,22 @@ def sorting_process(lane_index):
             log(f"Bắt đầu chu trình đẩy {lane_name}", 'info')
             
             RELAY_OFF(pull_pin)
-            relay_grab_state[lane_index] = 0 # (MỚI)
+            relay_grab_state[lane_index] = 0 
             time.sleep(settle_delay)
             if not main_running: return
             
             RELAY_ON(push_pin)
-            relay_push_state[lane_index] = 1 # (MỚI)
+            relay_push_state[lane_index] = 1 
             time.sleep(delay)
             if not main_running: return
             
             RELAY_OFF(push_pin)
-            relay_push_state[lane_index] = 0 # (MỚI)
+            relay_push_state[lane_index] = 0 
             time.sleep(settle_delay)
             if not main_running: return
             
             RELAY_ON(pull_pin)
-            relay_grab_state[lane_index] = 1 # (MỚI)
+            relay_grab_state[lane_index] = 1 
             
             log_type = "sort"
         
@@ -274,7 +280,7 @@ def sorting_process(lane_index):
 def handle_sorting_with_delay(lane_index):
     try:
         lane_name_for_log = lanes_config[lane_index]['name']
-        push_delay = timing_config.get('push_delay', 0.0)
+        push_delay = timing_config.get('push_delay', 0.2)
 
         if push_delay > 0:
             log(f"Đã thấy vật {lane_name_for_log}, chờ {push_delay}s...", 'info')
@@ -289,16 +295,21 @@ def handle_sorting_with_delay(lane_index):
         main_running = False
 
 # =============================
-#       QUÉT MÃ QR (Đã tối giản)
+#       QUÉT MÃ QR 
 # =============================
 def qr_detection_loop():
-    global pending_sensor_triggers, queue_head_since
+    global queue_head_since
     
-    detector = cv2.QRCodeDetector()
+    detector = cv2.QRCodeDetector() # Vẫn giữ detector của CV2
     last_qr, last_time = "", 0.0
-    print("[QR] Luồng QR bắt đầu (Sử dụng: cv2.QRCodeDetector).")
     
-    PENDING_TRIGGER_TIMEOUT = timing_config.get("pending_trigger_timeout", 1.0)
+    # Log khởi động
+    if PYZBAR_ENABLED:
+        print("[QR] Luồng QR bắt đầu (Ưu tiên: Pyzbar, Dự phòng: CV2).")
+    else:
+        print("[QR] Luồng QR bắt đầu (Sử dụng: cv2.QRCodeDetector).")
+    
+    # (ĐÃ XÓA) PENDING_TRIGGER_TIMEOUT
 
     while main_running:
         try:
@@ -321,43 +332,57 @@ def qr_detection_loop():
                 x_end = min(x + w, gray_frame.shape[1])
                 gray_frame = gray_frame[y:y_end, x:x_end]
 
-            data, _, _ = detector.detectAndDecode(gray_frame)
+            # --- LOGIC QUÉT PYZBAR + CV2 ---
+            data = None
+            qr_source = None
+
+            if PYZBAR_ENABLED:
+                try:
+                    decoded = pyzbar.decode(gray_frame)
+                    if decoded:
+                        raw = decoded[0].data
+                        data = raw.decode('utf-8', errors='ignore').strip('\x00')
+                        qr_source = "Pyzbar"
+                except Exception:
+                    data = None # Lỗi decode pyzbar
+
+            if not data:
+                try:
+                    data_cv2, _, _ = detector.detectAndDecode(gray_frame)
+                    if data_cv2:
+                        data = data_cv2
+                        qr_source = "CV2"
+                except Exception:
+                    data = None # Lỗi cv2
 
             if data and (data != last_qr or time.time() - last_time > 3.0):
                 last_qr, last_time = data, time.time()
                 data_key = canon_id(data)
                 data_raw = data.strip()
                 now = time.time()
+                
+                qr_source_log = f"({qr_source}) " if qr_source else ""
 
+                # --- (CẬP NHẬT) LOGIC FIFO NGHIÊM NGẶT (Strict FIFO) ---
                 if data_key in LANE_MAP:
                     idx = LANE_MAP[data_key]
-                    is_pending_match = False
                     
+                    # Luôn thêm vào hàng chờ. Không check sensor-first.
                     with queue_lock:
-                        if (pending_sensor_triggers[idx] > 0.0) and (now - pending_sensor_triggers[idx] < PENDING_TRIGGER_TIMEOUT):
-                            is_pending_match = True
-                            pending_sensor_triggers[idx] = 0.0
-                        
-                    if is_pending_match:
-                        lane_name = lanes_config[idx]['name']
-                        msg = f"QR '{data_raw}' khớp với sensor {lane_name} đang chờ."
-                        log(f"[QR] {msg}", 'info')
-                        threading.Thread(target=handle_sorting_with_delay, args=(idx,), daemon=True).start()
-                    else:
-                        with queue_lock:
-                            is_queue_empty_before = not qr_queue
-                            qr_queue.append(idx)
-                            current_queue_for_log = list(qr_queue) # Gửi index cho UI
-                            if is_queue_empty_before: queue_head_since = time.time()
-                        
-                        msg = f"Phát hiện {lanes_config[idx]['name']} (key: {data_key})"
-                        log(f"[QR] {msg}", 'qr')
-                        broadcast({"type": "log", "log_type": "qr", "message": msg, "data": {"queue": current_queue_for_log}})
+                        is_queue_empty_before = not qr_queue
+                        qr_queue.append(idx)
+                        current_queue_for_log = list(qr_queue) # Gửi index cho UI
+                        if is_queue_empty_before: queue_head_since = time.time()
+                    
+                    msg = f"Phát hiện {lanes_config[idx]['name']} (key: {data_key}). Đã thêm vào hàng chờ."
+                    log(f"[QR] {qr_source_log}{msg}", 'qr')
+                    broadcast({"type": "log", "log_type": "qr", "message": msg, "data": {"queue": current_queue_for_log}})
+                # --- (HẾT CẬP NHẬT) ---
                             
                 elif data_key == "NG":
-                    log(f"[QR] Mã NG: {data_raw}", 'warn')
+                    log(f"[QR] {qr_source_log}Mã NG: {data_raw}", 'warn')
                 else:
-                    log(f"[QR] Không rõ mã QR: raw='{data_raw}', key='{data_key}'", 'warn')
+                    log(f"[QR] {qr_source_log}Không rõ mã QR: raw='{data_raw}', key='{data_key}'", 'warn')
                     broadcast({"type": "log", "log_type": "unknown_qr", "message": f"Không rõ mã QR: {data_raw}"})
             
             time.sleep(0.01)
@@ -367,14 +392,17 @@ def qr_detection_loop():
             time.sleep(0.5)
 
 # =============================
-#      GIÁM SÁT SENSOR (Đã sửa FIFO)
+#      GIÁM SÁT SENSOR 
 # =============================
 def sensor_monitoring_thread():
-    global last_s_state, last_s_trig, queue_head_since, pending_sensor_triggers
+    global last_s_state, last_s_trig, queue_head_since
     
     debounce_time = timing_config.get('sensor_debounce', 0.1)
     QUEUE_HEAD_TIMEOUT = timing_config.get('queue_head_timeout', 15.0)
     num_lanes = len(lanes_config)
+    
+    # Biến theo dõi trạng thái trước đó để phát hiện sườn xuống
+    last_s_state_prev = list(last_s_state) 
 
     try:
         while main_running:
@@ -401,54 +429,59 @@ def sensor_monitoring_thread():
 
                 try:
                     sensor_now = GPIO.input(sensor_pin)
-                    last_s_state[i] = sensor_now # Cập nhật state cho UI
+                    # (SỬA) Chỉ cập nhật trạng thái này cho UI
+                    last_s_state[i] = sensor_now 
                 except Exception as gpio_e:
                     log(f"[SENSOR] Lỗi đọc GPIO pin {sensor_pin} ({lane_name}): {gpio_e}", 'error')
                     global main_running
                     main_running = False
                     break
-
-                if sensor_now == 0 and last_s_state[i] == 1: # (Lỗi logic nhỏ, đáng lẽ là `last_s_state_prev[i] == 1`)
-                                                          # Tuy nhiên, do `last_s_state` vừa được cập nhật, 
-                                                          # chúng ta phải so sánh với `last_s_trig` (debounce)
-                    pass # Bỏ qua, logic debounce sẽ xử lý
                 
-                # Logic debounce
-                current_state_time = last_s_trig[i]
-                if sensor_now == 0 and (last_s_state[i] == 1 or (now - current_state_time > debounce_time and current_state_time != 0)):
-                     # (Sửa logic debounce)
-                     # Phát hiện sườn xuống (1 -> 0) và đã qua thời gian debounce
+                #Phát hiện sườn xuống (1 -> 0)
+                if sensor_now == 0 and last_s_state_prev[i] == 1:
+                     
+                     # Logic debounce
                      if (now - last_s_trig[i]) > debounce_time:
                         last_s_trig[i] = now # Ghi lại thời điểm trigger
 
+                        # --- (CẬP NHẬT) LOGIC FIFO NGHIÊM NGẶT (Strict FIFO) ---
                         with queue_lock:
+                            current_queue_for_log = list(qr_queue)
+
                             if not qr_queue:
-                                # --- 1. HÀNG CHỜ RỖNG (Sensor-First) ---
+                                # --- 1. HÀNG CHỜ RỖNG ---
+                                # Nếu là lane đi thẳng (không cần QR), cho chạy luôn
                                 if push_pin is None:
                                     log(f"Vật đi thẳng (không QR) qua {lane_name}.", 'info')
                                     threading.Thread(target=sorting_process, args=(i,), daemon=True).start()
                                 else:
-                                    pending_sensor_triggers[i] = now 
-                                    log(f"Sensor {lane_name} kích hoạt (hàng chờ rỗng). Đang chờ QR...", 'warn')
+                                    # Nếu là lane cần QR, nhưng queue rỗng -> Lỗi
+                                    log(f"Sensor {lane_name} kích hoạt, nhưng hàng chờ rỗng. Bỏ qua.", 'warn')
                             
-                            elif i in qr_queue:
-                                # --- 2. KHỚP (Flexible FIFO) ---
-                                qr_queue.remove(i)
+                            elif qr_queue[0] == i:
+                                # --- 2. KHỚP ĐẦU HÀNG CHỜ ---
+                                qr_queue.pop(0) # Xóa job khỏi đầu hàng chờ
                                 current_queue_for_log = list(qr_queue)
-                                if not qr_queue or qr_queue[0] == i: # Nếu xóa đầu hàng
-                                      queue_head_since = now if qr_queue else 0.0
+                                queue_head_since = now if qr_queue else 0.0 # Reset timeout
 
                                 threading.Thread(target=handle_sorting_with_delay, args=(i,), daemon=True).start()
-                                log(f"Sensor {lane_name} khớp (FIFO Linh hoạt).", 'info')
+                                log(f"Sensor {lane_name} khớp (Strict FIFO).", 'info')
                                 broadcast({"type": "log", "log_type": "info", "message": f"Sensor {lane_name} khớp.", "data": {"queue": current_queue_for_log}})
-                                pending_sensor_triggers[i] = 0.0
+                            
                             else:
-                                # --- 3. KHÔNG KHỚP (Pass-over) ---
-                                log(f"Sensor {lane_name} kích hoạt, nhưng vật phẩm không có trong hàng chờ. Bỏ qua.", 'warn')
+                                # --- 3. KHÔNG KHỚP (Lỗi đồng bộ) ---
+                                expected_lane_index = qr_queue[0]
+                                expected_lane_name = "Không rõ"
+                                try:
+                                    expected_lane_name = lanes_config[expected_lane_index]['name']
+                                except Exception: pass
+                                
+                                log(f"Sensor {lane_name} (lane {i}) kích hoạt, nhưng KHÔNG KHỚP với đầu hàng chờ ({expected_lane_name} - lane {expected_lane_index}). Bỏ qua.", 'warn')
+                                broadcast({"type": "log", "log_type": "warn", "message": f"Lỗi đồng bộ: Sensor {lane_name} kích hoạt. Chờ: {expected_lane_name}.", "data": {"queue": current_queue_for_log}})
+                        # --- (HẾT CẬP NHẬT) ---
                 
-                # Cập nhật trạng thái cũ (cần một biến riêng)
-                # (Đơn giản hóa: logic debounce ở trên đã đủ, không cần `last_s_state_prev`)
-                # Chỉ cần đảm bảo `last_s_state[i]` được cập nhật ở đầu vòng lặp.
+                # (SỬA) Cập nhật trạng thái trước đó
+                last_s_state_prev[i] = sensor_now
 
             adaptive_sleep = 0.05 if all(s == 1 for s in last_s_state) else 0.01
             time.sleep(adaptive_sleep)
@@ -468,7 +501,7 @@ def broadcast_state_thread():
             # Tạo snapshot trạng thái
             lanes_snapshot = []
             
-            # (MỚI) Đảm bảo các mảng đồng bộ kích thước
+            # Đảm bảo các mảng đồng bộ kích thước
             num_lanes_cfg = len(lanes_config)
             if len(last_s_state) != num_lanes_cfg or len(counts) != num_lanes_cfg or \
                len(relay_grab_state) != num_lanes_cfg or len(relay_push_state) != num_lanes_cfg:
@@ -487,8 +520,7 @@ def broadcast_state_thread():
                     "relay_grab": relay_grab_state[i],
                     "relay_push": relay_push_state[i],
                   
-                    
-                    "status": "Sẵn sàng" # (UI lite không dùng status phức tạp)
+                    "status": "Sẵn sàng" 
                 })
             
             with queue_lock:
@@ -508,7 +540,7 @@ def broadcast_state_thread():
         time.sleep(0.5) # Gửi state 2 lần/giây
 
 # =============================
-# 🌐 FLASK + WEBSOCKET
+#  FLASK + WEBSOCKET
 # =============================
 app = Flask(__name__, static_folder=".")
 sock = Sock(app)
@@ -559,31 +591,31 @@ def ws(ws):
             if act == "reset_count":
                 global counts
                 counts = [0] * len(lanes_config)
-                log("🧹 Đã reset toàn bộ bộ đếm.", 'warn')
+                log("Đã reset toàn bộ bộ đếm.", 'warn')
             
             elif act == "reset_queue":
                 with queue_lock:
-                    global queue_head_since, pending_sensor_triggers
+                    global queue_head_since
                     qr_queue.clear()
                     queue_head_since = 0.0
-                    pending_sensor_triggers = [0.0] * len(lanes_config)
-                log("🧹 Reset hàng chờ.", 'warn')
+                    # (ĐÃ XÓA) pending_sensor_triggers
+                log("Reset hàng chờ.", 'warn')
                 broadcast({"type": "log", "log_type": "warn", "message": "Hàng chờ đã được reset.", "data": {"queue": []}})
     finally:
         with ws_lock: ws_clients.discard(ws)
         print(f"[WS] Client ngắt kết nối. Còn lại: {len(ws_clients)}")
 
 # =============================
-# 🏁 MAIN
+# MAIN
 # =============================
 if __name__ == "__main__":
     try:
-        print("--- HỆ THỐNG LITE-PRO TỐI GIẢN ĐANG KHỞI ĐỘNG ---")
+        print("--- HỆ THỐNG ĐANG KHỞI ĐỘNG ---")
 
         if not load_config():
             raise RuntimeError("Không thể tải file config.json.")
         
-        GPIO.setmode(GPIO.BCM if timing_config.get("gpio_mode", "BCM") == "BCM" else GPIO.BOARD)
+        GPIO.setmode(GPIO.BOARD if timing_config.get("gpio_mode", "BOARD") == "BOARD" else GPIO.BCM)
         GPIO.setwarnings(False)
         print(f"[GPIO] Cài đặt chân SENSOR: {SENSOR_PINS}")
         for pin in SENSOR_PINS: GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -598,17 +630,16 @@ if __name__ == "__main__":
         threading.Thread(target=run_camera, args=(CAM_IDX,), name="CameraThread", daemon=True).start()
         threading.Thread(target=qr_detection_loop, name="QRScannerThread", daemon=True).start()
         threading.Thread(target=sensor_monitoring_thread, name="SensorMonThread", daemon=True).start()
-        threading.Thread(target=broadcast_state_thread, name="StateBcastThread", daemon=True).start() # (MỚI)
+        threading.Thread(target=broadcast_state_thread, name="StateBcastThread", daemon=True).start()
 
         time.sleep(1)
         if not main_running:
              raise RuntimeError("Khởi động luồng thất bại (Camera hoặc GPIO).")
 
         print("="*55 + f"\n HỆ THỐNG PHÂN LOẠI SẴN SÀNG \n" +
-                     f" Logic: FIFO Linh Hoạt (Đã sửa hạn chế)\n" +
+                     f" Logic: FIFO Nghiêm ngặt (Đã cập nhật)\n" +
                      f" Truy cập: http://<IP_CUA_PI>:3000\n" + "="*55)
         
-        # Chạy Web Server
         app.run(host="0.0.0.0", port=3000)
 
     except KeyboardInterrupt:
